@@ -1,0 +1,8 @@
+node_modules/
+.vite/
+.tsbuild/
+.idea/
+.claude/
+dist/
+.env
+.env.local

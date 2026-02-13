@@ -1,0 +1,18 @@
+/* ═══ MCU IDE Component Styles ═══ */
+
+.cpuStatus {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+
+.nextInst {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .65rem;
+  color: var(--t3);
+  margin-top: .3rem;
+}
+
+.nextInst span {
+  color: var(--ac);
+}

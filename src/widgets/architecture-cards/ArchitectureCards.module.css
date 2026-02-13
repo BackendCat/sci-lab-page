@@ -1,0 +1,162 @@
+.cardsSection {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 3rem 3rem 5rem;
+}
+
+.cardsHeader {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.cardsLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  color: var(--ac);
+  margin-bottom: 0.6rem;
+}
+
+.cardsLabel::before,
+.cardsLabel::after {
+  content: "";
+  width: 22px;
+  height: 1.5px;
+  background: var(--ac);
+}
+
+.cardsHeader h2 {
+  font-size: clamp(1.3rem, 2.3vw, 1.8rem);
+  font-weight: 700;
+  color: var(--t1);
+  margin-bottom: 0.4rem;
+}
+
+.cardsHeader p {
+  color: var(--t2);
+  font-size: 0.85rem;
+}
+
+.cardsCarousel {
+  position: relative;
+  padding: 0 60px;
+}
+
+.cardsViewport {
+  overflow: hidden;
+}
+
+.cardsStrip {
+  display: flex;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform;
+}
+
+.cardsPage {
+  display: grid;
+  gap: 1.4rem;
+  min-width: 100%;
+  flex-shrink: 0;
+  justify-items: center;
+}
+
+.cardsNav {
+  position: absolute;
+  top: calc(50% - 30px);
+  transform: translateY(-50%);
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--t3);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s;
+  z-index: 5;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.cardsNav:hover {
+  border-color: var(--ac);
+  color: var(--ac);
+}
+
+.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.left {
+  left: 0;
+}
+
+.right {
+  right: 0;
+}
+
+.cardsNav svg {
+  width: 16px;
+  height: 16px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.cardsDots {
+  display: flex;
+  justify-content: center;
+  gap: 0.4rem;
+  margin-top: 1.2rem;
+}
+
+.cardsDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--border-h);
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.cardsDot:hover {
+  background: var(--t3);
+  transform: scale(1.15);
+}
+
+.active {
+  background: var(--ac);
+  transform: scale(1.3);
+}
+
+@media (max-width: 1200px) {
+  .cardsCarousel {
+    padding: 0 30px;
+  }
+}
+
+@media (max-width: 600px) {
+  .cardsCarousel {
+    padding: 0 20px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .cardsPage {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .cardsPage {
+    grid-template-columns: 1fr !important;
+  }
+}

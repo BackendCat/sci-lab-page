@@ -1,0 +1,82 @@
+.techCarousel {
+  padding: 2.5rem 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  overflow: hidden;
+  position: relative;
+}
+
+.techCarousel::before,
+.techCarousel::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 120px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.techCarousel::before {
+  left: 0;
+  background: linear-gradient(90deg, var(--bg), transparent);
+}
+
+.techCarousel::after {
+  right: 0;
+  background: linear-gradient(270deg, var(--bg), transparent);
+}
+
+.carouselLabel {
+  text-align: center;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  color: var(--t3);
+  margin-bottom: 1.3rem;
+}
+
+.carouselTrack {
+  display: flex;
+  gap: 3.5rem;
+  animation: scroll-x 35s linear infinite;
+  width: max-content;
+  align-items: center;
+}
+
+.carouselTrack:hover {
+  animation-play-state: paused;
+}
+
+@keyframes scroll-x {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.carouselItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--t3);
+  white-space: nowrap;
+  transition: color 0.3s;
+  letter-spacing: 0.5px;
+}
+
+.carouselItem:hover {
+  color: var(--ac);
+}
+
+.carouselItem svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}

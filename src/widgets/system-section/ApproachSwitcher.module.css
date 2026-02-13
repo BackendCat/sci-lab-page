@@ -1,0 +1,45 @@
+.switcher {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  margin-bottom: 1.3rem;
+}
+
+.btn {
+  padding: .3rem .7rem;
+  border-radius: 6px;
+  font-size: .66rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 500;
+  color: var(--t3);
+  background: transparent;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: all .25s;
+  letter-spacing: .3px;
+}
+
+.btn.active {
+  color: var(--ac);
+  border-color: var(--ac);
+  background: var(--ac-dim);
+}
+
+.btn:hover {
+  border-color: var(--ac);
+  color: var(--ac);
+}
+
+.arrow {
+  font-size: .7rem;
+  color: var(--t3);
+  user-select: none;
+}
+
+.panel {
+  transition: opacity .25s ease;
+}
+
+.hidden {
+  display: none;
+}

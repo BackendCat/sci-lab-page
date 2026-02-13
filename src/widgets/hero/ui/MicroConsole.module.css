@@ -1,0 +1,89 @@
+.microConsole {
+  width: 245px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 8px 12px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.63rem;
+  line-height: 1.65;
+  color: var(--t3);
+  overflow: hidden;
+  z-index: 4;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.4);
+  position: relative;
+}
+
+.microConsole::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 10px;
+  padding: 1px;
+  background: conic-gradient(
+    from var(--glow-angle, 0deg) at var(--glow-x, 50%) var(--glow-y, 50%),
+    transparent 0%,
+    var(--ac) 8%,
+    transparent 16%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .3s;
+  z-index: 10;
+}
+
+.microConsole:hover::before {
+  opacity: 1;
+}
+
+.microConsole:hover {
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45),
+              0 0 18px rgba(22, 224, 189, 0.1),
+              0 0 0 1px rgba(22, 224, 189, 0.12);
+}
+
+.consoleTitle {
+  font-size: 0.58rem;
+  text-transform: uppercase;
+  letter-spacing: 1.8px;
+  color: var(--t3);
+  margin-bottom: 5px;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+}
+
+.logLine {
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.5s, transform 0.5s;
+  white-space: nowrap;
+}
+
+.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.ts {
+  color: var(--t3);
+}
+.ok {
+  color: #22c55e;
+}
+.warn {
+  color: #eab308;
+}
+.info {
+  color: var(--ac3);
+}
+
+/* ── Light theme ── */
+:global([data-theme="light"]) .microConsole {
+  background: #fff;
+  border-color: rgba(0, 0, 0, 0.08);
+  color: #475569;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}

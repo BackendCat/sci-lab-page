@@ -1,0 +1,43 @@
+.cursorDot {
+  position: fixed;
+  width: 6px;
+  height: 6px;
+  background: var(--ac);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: screen;
+  top: -20px;
+  left: -20px;
+}
+
+.cursorCircle {
+  position: fixed;
+  width: 42px;
+  height: 42px;
+  border: 1.5px solid var(--ac-glow);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  top: -60px;
+  left: -60px;
+}
+
+/* Light theme: disable blend mode that washes out on light backgrounds */
+:global([data-theme="light"]) .cursorDot {
+  mix-blend-mode: normal;
+  background: var(--ac);
+}
+
+:global([data-theme="light"]) .cursorCircle {
+  border-color: var(--ac-glow);
+}
+
+@media (max-width: 900px) {
+  .cursorDot,
+  .cursorCircle {
+    display: none;
+  }
+}

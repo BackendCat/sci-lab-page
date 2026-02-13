@@ -1,0 +1,20 @@
+/* Component-specific styles for IdeShell layout.
+   Global .ide-* classes from globals.css are applied directly in JSX. */
+
+.shell {
+  position: relative;
+}
+
+.editorPane {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-width: 0;
+}
+
+.previewPane {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-width: 0;
+}

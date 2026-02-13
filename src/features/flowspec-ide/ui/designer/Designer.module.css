@@ -1,0 +1,615 @@
+/* ── Designer container ── */
+.designer {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.reactFlow {
+  flex: 1;
+}
+
+/* ── React Flow theme overrides ── */
+.reactFlow :global(.react-flow__background) {
+  background: var(--bg2) !important;
+}
+
+.reactFlow :global(.react-flow__pane) {
+  cursor: grab;
+}
+
+.reactFlow :global(.react-flow__controls) {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.reactFlow :global(.react-flow__controls-button) {
+  background: var(--bg2);
+  border-color: var(--border);
+  color: var(--t2);
+  fill: var(--t2);
+  width: 24px;
+  height: 24px;
+}
+
+.reactFlow :global(.react-flow__controls-button:hover) {
+  background: var(--bg3);
+}
+
+.reactFlow :global(.react-flow__controls-button svg) {
+  fill: var(--t2);
+}
+
+.reactFlow :global(.react-flow__minimap) {
+  background: var(--bg1) !important;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.reactFlow :global(.react-flow__minimap-mask) {
+  fill: rgba(0, 0, 0, 0.6);
+}
+
+.reactFlow :global(.react-flow__edge-path) {
+  stroke: var(--ac);
+  stroke-opacity: 0.6;
+}
+
+.reactFlow :global(.react-flow__edge.selected .react-flow__edge-path) {
+  stroke-opacity: 1;
+}
+
+/* ── Custom node ── */
+.flowNode {
+  min-width: 170px;
+  max-width: 240px;
+  background: var(--bg2);
+  border: 1.5px solid var(--border-h);
+  border-radius: 8px;
+  padding: 10px 12px 8px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  color: var(--t1);
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.flowNode:hover {
+  box-shadow: 0 0 12px rgba(22, 224, 189, 0.15);
+}
+
+.entryNode {
+  border-color: var(--ac);
+  background: rgba(22, 224, 189, 0.05);
+}
+
+.selectedNode {
+  border-color: var(--ac);
+  box-shadow: 0 0 0 1px var(--ac), 0 0 16px rgba(22, 224, 189, 0.2);
+}
+
+.entryBadge {
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  width: 8px;
+  height: 8px;
+  background: var(--ac);
+  border-radius: 50%;
+}
+
+.nodeTitle {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--t1);
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.entryNode .nodeTitle {
+  color: var(--ac);
+}
+
+.nodeSummary {
+  font-size: 9px;
+  color: var(--t3);
+  display: flex;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.nodeElements {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.nodeElementRow {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 9px;
+  color: var(--t2);
+  overflow: hidden;
+}
+
+.elIcon {
+  flex-shrink: 0;
+  width: 12px;
+  text-align: center;
+  color: var(--t3);
+}
+
+.elText {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.elTarget {
+  color: var(--ac);
+  opacity: 0.7;
+  flex-shrink: 0;
+  font-size: 8px;
+}
+
+/* ── Handles ── */
+.handle {
+  width: 8px !important;
+  height: 8px !important;
+  background: var(--border-h) !important;
+  border: 1.5px solid var(--bg2) !important;
+  border-radius: 50%;
+}
+
+.handle:hover {
+  background: var(--ac) !important;
+}
+
+.handleOut {
+  width: 6px !important;
+  height: 6px !important;
+  background: var(--ac) !important;
+  border: 1.5px solid var(--bg2) !important;
+  border-radius: 50%;
+}
+
+/* ── Edge label ── */
+.edgeLabel {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 8px;
+  color: var(--t3);
+  background: var(--bg2);
+  padding: 1px 4px;
+  border-radius: 3px;
+  border: 1px solid var(--border);
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.backEdge {
+  stroke: var(--t3) !important;
+  stroke-opacity: 0.4 !important;
+  stroke-dasharray: 4 2;
+}
+
+/* ── Reset layout button ── */
+.resetBtn {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--t2);
+  padding: 4px 10px;
+  font-size: 10px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.12s, color 0.12s;
+}
+
+.resetBtn:hover {
+  background: var(--bg3);
+  color: var(--ac);
+}
+
+/* ── Property panel (rendered in IDE right sidebar) ── */
+.propertyPanel {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  font-family: "JetBrains Mono", monospace;
+}
+
+.panelHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.panelTitle {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--ac);
+  font-family: "JetBrains Mono", monospace;
+}
+
+.panelClose {
+  background: none;
+  border: none;
+  color: var(--t3);
+  cursor: pointer;
+  font-size: 14px;
+  padding: 2px 4px;
+  border-radius: 3px;
+  line-height: 1;
+}
+
+.panelClose:hover {
+  background: var(--bg3);
+  color: var(--t1);
+}
+
+/* ── Element list ── */
+.elementList {
+  flex: 1;
+  overflow-y: auto;
+  padding: 6px;
+}
+
+.elementRow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 10px;
+  color: var(--t1);
+  font-family: "JetBrains Mono", monospace;
+  transition: background 0.1s;
+  border: 1px solid transparent;
+  position: relative;
+}
+
+.elementRow:hover {
+  background: var(--bg3);
+}
+
+.selectedRow {
+  background: rgba(22, 224, 189, 0.06);
+  border-color: var(--ac);
+}
+
+.rowIcon {
+  width: 14px;
+  text-align: center;
+  flex-shrink: 0;
+  color: var(--t3);
+  font-size: 11px;
+}
+
+.rowLabel {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.rowTarget {
+  color: var(--ac);
+  font-size: 9px;
+  opacity: 0.7;
+}
+
+.rowDelete {
+  background: none;
+  border: none;
+  color: var(--t3);
+  cursor: pointer;
+  font-size: 11px;
+  padding: 1px 3px;
+  border-radius: 2px;
+  opacity: 0;
+  transition: opacity 0.1s, color 0.1s;
+}
+
+.elementRow:hover .rowDelete {
+  opacity: 1;
+}
+
+.rowDelete:hover {
+  color: var(--err, #f44);
+}
+
+/* ── Add element bar ── */
+.addBar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+  padding: 6px;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.addBtn {
+  background: var(--bg1);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  color: var(--t3);
+  padding: 3px 6px;
+  font-size: 9px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.1s, color 0.1s;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.addBtn:hover {
+  background: var(--bg3);
+  color: var(--ac);
+  border-color: var(--ac);
+}
+
+/* ── Property fields ── */
+.propFields {
+  padding: 8px;
+  border-top: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.propTitle {
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--t3);
+  margin-bottom: 6px;
+}
+
+.propRow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 5px;
+  font-size: 10px;
+  color: var(--t2);
+}
+
+.propRow label {
+  width: 50px;
+  flex-shrink: 0;
+  text-align: right;
+  font-family: "JetBrains Mono", monospace;
+}
+
+/* ── IDE-styled inputs ── */
+.ideInput {
+  width: 100%;
+  background: var(--bg1);
+  color: var(--t1);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 4px 8px;
+  font-size: 11px;
+  font-family: "JetBrains Mono", monospace;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.ideInput:focus {
+  border-color: var(--ac);
+}
+
+.ideInput::placeholder {
+  color: var(--t3);
+}
+
+.ideTextarea {
+  width: 100%;
+  background: var(--bg1);
+  color: var(--t1);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 4px 8px;
+  font-size: 11px;
+  font-family: "JetBrains Mono", monospace;
+  outline: none;
+  resize: vertical;
+  min-height: 44px;
+  transition: border-color 0.15s;
+}
+
+.ideTextarea:focus {
+  border-color: var(--ac);
+}
+
+/* ── Custom select ── */
+.ideSelectWrap {
+  position: relative;
+  width: 100%;
+}
+
+.ideSelectBtn {
+  width: 100%;
+  background: var(--bg1);
+  color: var(--t1);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 4px 24px 4px 8px;
+  font-size: 11px;
+  font-family: "JetBrains Mono", monospace;
+  text-align: left;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.15s;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ideSelectBtn:focus {
+  border-color: var(--ac);
+}
+
+.ideSelectArrow {
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--t3);
+  font-size: 8px;
+  pointer-events: none;
+}
+
+.ideSelectDrop {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  background: var(--bg1);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  margin-top: 2px;
+  max-height: 140px;
+  overflow-y: auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.ideSelectOption {
+  padding: 4px 8px;
+  font-size: 11px;
+  font-family: "JetBrains Mono", monospace;
+  color: var(--t1);
+  cursor: pointer;
+  transition: background 0.08s;
+}
+
+.ideSelectOption:hover,
+.ideSelectOption.focused {
+  background: var(--bg3);
+}
+
+.ideSelectOption.active {
+  color: var(--ac);
+}
+
+/* ── Loading fallback ── */
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: var(--t3);
+  font-size: 11px;
+  font-family: "JetBrains Mono", monospace;
+}
+
+/* ═══════════════ LIGHT THEME OVERRIDES ═══════════════ */
+
+/* Designer in light theme: use a slightly lighter dark palette
+   (stays compatible with the dark IDE but distinguishes the graph area) */
+:global([data-theme="light"]) .designer {
+  --bg: #2a2a46;
+  --bg1: #242440;
+  --bg2: #323250;
+  --bg3: #3e3e60;
+  --surface: #323250;
+  --code-bg: #2a2a46;
+  --border: rgba(255, 255, 255, 0.12);
+  --border-h: rgba(255, 255, 255, 0.20);
+  --t1: #d4daf0;
+  --t2: #b0b8d4;
+  --t3: #7a7f98;
+  --ac: #94e2d5;
+  --ac-dim: rgba(148, 226, 213, 0.12);
+  --ac-glow: rgba(148, 226, 213, 0.28);
+}
+
+:global([data-theme="light"]) .reactFlow :global(.react-flow__background) {
+  background: #2a2a46 !important;
+}
+
+:global([data-theme="light"]) .reactFlow :global(.react-flow__controls) {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+:global([data-theme="light"]) .reactFlow :global(.react-flow__minimap) {
+  background: #242440 !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+:global([data-theme="light"]) .reactFlow :global(.react-flow__minimap-mask) {
+  fill: rgba(0, 0, 0, 0.5);
+}
+
+:global([data-theme="light"]) .flowNode {
+  background: #323250;
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
+:global([data-theme="light"]) .flowNode:hover {
+  box-shadow: 0 0 12px rgba(148, 226, 213, 0.18);
+}
+
+:global([data-theme="light"]) .entryNode {
+  background: rgba(148, 226, 213, 0.08);
+}
+
+:global([data-theme="light"]) .selectedNode {
+  box-shadow: 0 0 0 1px var(--ac), 0 0 16px rgba(148, 226, 213, 0.2);
+}
+
+:global([data-theme="light"]) .handle {
+  background: rgba(255, 255, 255, 0.18) !important;
+  border-color: #323250 !important;
+}
+
+:global([data-theme="light"]) .handleOut {
+  border-color: #323250 !important;
+}
+
+:global([data-theme="light"]) .edgeLabel {
+  background: #323250;
+}
+
+/* Property panel: uses IDE's lighter Catppuccin dark palette */
+:global([data-theme="light"]) .propertyPanel {
+  --bg: #242438;
+  --bg1: #1e1e30;
+  --bg2: #2a2a42;
+  --bg3: #343454;
+  --border: rgba(255, 255, 255, 0.10);
+  --border-h: rgba(255, 255, 255, 0.18);
+  --t1: #d4daf0;
+  --t2: #b0b8d4;
+  --t3: #7a7f98;
+  --ac: #94e2d5;
+  --err: #f38ba8;
+  background: #2a2a42;
+}
+
+:global([data-theme="light"]) .selectedRow {
+  background: rgba(148, 226, 213, 0.10);
+}
+
+:global([data-theme="light"]) .addBtn {
+  background: #242440;
+}
+
+:global([data-theme="light"]) .ideSelectDrop {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}

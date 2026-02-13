@@ -1,0 +1,32 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* ── Light theme: darker strokes, higher opacity for contrast ── */
+:global([data-theme="light"]) .overlay svg g {
+  opacity: 0.25 !important;
+}
+
+:global([data-theme="light"]) .overlay svg g text {
+  fill: #115e59;
+}
+
+:global([data-theme="light"]) .overlay svg g line,
+:global([data-theme="light"]) .overlay svg g rect,
+:global([data-theme="light"]) .overlay svg g polygon,
+:global([data-theme="light"]) .overlay svg g path,
+:global([data-theme="light"]) .overlay svg g polyline,
+:global([data-theme="light"]) .overlay svg g circle,
+:global([data-theme="light"]) .overlay svg g ellipse {
+  stroke: #115e59;
+}
+
+@media (max-width: 1000px) {
+  :global([data-theme="light"]) .overlay {
+    display: none;
+  }
+}

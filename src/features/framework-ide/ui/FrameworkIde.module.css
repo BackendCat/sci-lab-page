@@ -1,0 +1,5 @@
+.statusText {
+  color: var(--t3);
+  font-size: 0.55rem;
+  font-family: "JetBrains Mono", monospace;
+}

@@ -1,0 +1,94 @@
+.section {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 5rem 3rem;
+}
+
+.sectionRow {
+  display: grid;
+  grid-template-columns: 0.9fr 1.3fr;
+  gap: 1.8rem;
+  align-items: start;
+}
+
+.reverse {
+  grid-template-columns: 1.3fr 0.9fr;
+}
+
+/* Ensure consistent text-to-window distance in all layouts */
+
+.sectionVisualReverse {
+  order: -1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.sectionText {
+  max-width: 320px;
+  justify-self: end;
+}
+
+.sectionTextReverse {
+  justify-self: start !important;
+}
+
+.sectionLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  color: var(--ac);
+  margin-bottom: 0.6rem;
+}
+
+.sectionLabel::before {
+  content: "";
+  width: 22px;
+  height: 1.5px;
+  background: var(--ac);
+}
+
+.sectionTitle {
+  font-size: clamp(1.4rem, 2.8vw, 1.9rem);
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--t1);
+  margin-bottom: 0.8rem;
+  letter-spacing: 0.005em;
+}
+
+.sectionVisual {
+  /* Visual content */
+}
+
+@media (max-width: 1000px) {
+  .section {
+    padding: 3.5rem 1.5rem;
+    overflow-x: hidden;
+  }
+
+  .sectionRow {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .sectionText {
+    max-width: none;
+  }
+
+  .sectionVisual,
+  .sectionVisualReverse {
+    order: 0;
+    max-width: 100%;
+    overflow: hidden;
+  }
+}
+
+@media (min-width: 1700px) {
+  .section {
+    max-width: 1600px;
+  }
+}
